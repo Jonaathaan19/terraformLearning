@@ -29,19 +29,19 @@ resource "azurerm_storage_account" "functionStorage" {
 }
 
 resource "azurerm_service_plan" "appServicePlan" {
-  name = "jonAppPlan"
+  name                = "jonAppPlan"
   resource_group_name = azurerm_resource_group.resourceGroupDeploy.name
-  location = azurerm_resource_group.resourceGroupDeploy.location
-  os_type = "Linux"
-  sku_name = "Y1"
+  location            = azurerm_resource_group.resourceGroupDeploy.location
+  os_type             = "Linux"
+  sku_name            = "Y1"
 }
 
 resource "azurerm_linux_function_app" "functionApp" {
-  name = "jonFunctionApp"
-  resource_group_name = azurerm_resource_group.resourceGroupDeploy.name
-  location = azurerm_resource_group.resourceGroupDeploy.location
-  storage_account_name = azurerm_storage_account.functionStorage.name
-  service_plan_id = azurerm_service_plan.appServicePlan.id
+  name                          = "jonFunctionApp"
+  resource_group_name           = azurerm_resource_group.resourceGroupDeploy.name
+  location                      = azurerm_resource_group.resourceGroupDeploy.location
+  storage_account_name          = azurerm_storage_account.functionStorage.name
+  service_plan_id               = azurerm_service_plan.appServicePlan.id
   storage_uses_managed_identity = true
   identity {
     type = "SystemAssigned"
