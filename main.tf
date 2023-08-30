@@ -21,7 +21,7 @@ resource "azurerm_resource_group" "resourceGroupDeploy" {
 }
 
 resource "azurerm_storage_account" "functionStorage" {
-  name                     = "linuxFunctionAppSt"
+  name                     = "linuxfunctionappst"
   resource_group_name      = azurerm_resource_group.resourceGroupDeploy.name
   location                 = azurerm_resource_group.resourceGroupDeploy.location
   account_tier             = "Standard"
@@ -45,5 +45,8 @@ resource "azurerm_linux_function_app" "functionApp" {
   storage_uses_managed_identity = true
   identity {
     type = "SystemAssigned"
+  }
+  site_config {
+
   }
 }
